@@ -2,22 +2,26 @@
 #SAQUE
 #EXTRATO
 
+import streamlit as st
+
+st.title ('NuBank')
+
 print ('Bem vindo ao nuAtendimento, como podemos ajudar?')
 
 senha = 'corinthians'
 
-acessar = input('Deseja acessar o seu roxinho? s/n ')
-
-
+acessar = st.text_input('Deseja acessar o seu roxinho? s/n ')
 
 saldo = 1000.00
 
 extrato = []
 
-while acessar == 's':
+# while acessar == 's':
 
-    senha_input = input('Insira a senha: ')
-    
+senha_input = st.text_input('Insira a senha: ')
+
+if st.button('Acessar'):
+
     if senha_input == senha:
 
         print ('Acesso autorizado')
@@ -29,23 +33,23 @@ while acessar == 's':
         ''')
         escolha = int(input('Escolha a operação:'))
         if escolha == 1:
-            saque = float(input('Digite o valor do saque:'))
+            saque = st.number_input('Digite o valor do saque:')
             saldo = saldo - saque
-            print('O valor restante em conta é: R$',saldo)
+            st.write('O valor restante em conta é: R$',saldo)
             extrato.append(-saque)
-            acessar = input ('Deseja continuar? s/n ')
+            acessar = st.text_input ('Deseja continuar? s/n ')
         elif escolha == 2:
-            deposito = float(input('Digite o valor do deposito:'))
+            deposito = st.number_input('Digite o valor do deposito:')
             saldo = saldo + deposito
-            print('O novo valor em conta é: R$',saldo)
+            st.write('O novo valor em conta é: R$',saldo)
             extrato.append(deposito)
-            acessar = input ('Deseja continuar? s/n ')
+            acessar = st.text_input ('Deseja continuar? s/n ')
         elif escolha == 3:
-            print('extrato', extrato)
-            acessar = input ('Deseja continuar? s/n ')
+            st.write('extrato', extrato)
+            acessar = st.text_input ('Deseja continuar? s/n ')
 
     else:
         print ('Acesso negado') 
-else:
-    print ('Até logo')
+# else:
+#     print ('Até logo')
 
